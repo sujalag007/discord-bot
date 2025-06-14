@@ -2,9 +2,9 @@ import discord
 from discord.ext import commands
 import datetime
 import pytz
-
+from keep_alive import keep_alive
 TOKEN = "MTM4MzQyMzk1NzgwMTIzODU3OQ.GS98ap.JaxnV5N1QOSf4O4uo53BmWFv4u8x7FGhzgHEXU"
-
+keep_alive()
 TRACK_FILE = "submissions.txt"
 PROGRESS_CHANNEL_ID = 1350373020757262408
 tz = pytz.timezone('Asia/Kolkata')
