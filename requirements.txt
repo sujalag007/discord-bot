@@ -1,5 +1,6 @@
 atomicwrites==1.4.0
 discord.py==2.5.2
+flask
 jsonpointer==2.1
 matplotlib==3.9.2
 mysql-connector-python==9.2.0
