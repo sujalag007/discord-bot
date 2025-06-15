@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from keep_alive import keep_alive
 
 load_dotenv()
-TOKEN = MTM4MzQyMzk1NzgwMTIzODU3OQ.GS98ap.JaxnV5N1QOSf4O4uo53BmWFv4u8x7FGhzgHEXU
+TOKEN = "MTM4MzQyMzk1NzgwMTIzODU3OQ.GS98ap.JaxnV5N1QOSf4O4uo53BmWFv4u8x7FGhzgHEXU"
 keep_alive()
 TRACK_FILE = "submissions.txt"
 PROGRESS_CHANNEL_ID = 1350373020757262408
