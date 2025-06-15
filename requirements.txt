@@ -12,3 +12,4 @@ PyQtWebEngine==5.15.6
 pytz
 setuptools==75.1.0
 wheel==0.44.0
+python-dotenv
