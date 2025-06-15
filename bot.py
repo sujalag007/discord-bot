@@ -2,8 +2,13 @@ import discord
 from discord.ext import commands
 import datetime
 import pytz
+import os
+from dotenv import load_dotenv
 from keep_alive import keep_alive
-TOKEN = "MTM4MzQyMzk1NzgwMTIzODU3OQ.GS98ap.JaxnV5N1QOSf4O4uo53BmWFv4u8x7FGhzgHEXU"
+
+load_dotenv()
+TOKEN = os.getenv('DISCORD_API_TOKEN')
+
 keep_alive()
 TRACK_FILE = "submissions.txt"
 PROGRESS_CHANNEL_ID = 1350373020757262408
@@ -37,9 +42,15 @@ async def on_message(message):
 
 @bot.command()
 async def report1day(ctx):
-    """Who submitted in the last 24 hours."""
+    """Who submitted since 12:00 pm today (or yesterday if it's before 12pm now)."""
     now_ist = datetime.datetime.now(tz)
-    cutoff = now_ist - datetime.timedelta(days=1)
+
+    # Determine cutoff at 12pm
+    noon_today = now_ist.replace(hour=12, minute=0, second=0, microsecond=0)
+    if now_ist >= noon_today:
+        cutoff = noon_today
+    else:
+        cutoff = noon_today - datetime.timedelta(days=1)
 
     members_submitted = set()
     try:
@@ -58,18 +69,21 @@ async def report1day(ctx):
         members_submitted = set()
 
     if members_submitted:
-        report = "🎉 **Members who submitted in the last 24 hours:**\n" + '\n'.join(members_submitted)
+        report = "🎉 **Members who submitted since 12:00 pm:**\n" + '\n'.join(members_submitted)
     else:
-        report = "❕ No submissions in the last 24 hours."
+        report = "❕ No submissions since 12:00 pm."
 
     await ctx.send(report)
 
 
 @bot.command()
 async def inactive3days(ctx):
-    """Who haven't submitted in the last 3 days."""
+    """Who haven't submitted since 12:00 pm 3 days ago."""
     now_ist = datetime.datetime.now(tz)
-    cutoff = now_ist - datetime.timedelta(days=3)
+
+    # Determine cutoff at 12pm 3 days ago
+    noon_today = now_ist.replace(hour=12, minute=0, second=0, microsecond=0)
+    cutoff = noon_today - datetime.timedelta(days=3)
 
     members_submitted = set()
     try:
