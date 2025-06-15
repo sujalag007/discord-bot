@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from keep_alive import keep_alive
 
 load_dotenv()
-TOKEN = os.getenv('DISCORD_API_TOKEN')
+TOKEN = os.getenv('')
 
 keep_alive()
 TRACK_FILE = "submissions.txt"
